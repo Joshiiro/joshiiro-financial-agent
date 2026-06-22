@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Joshiiro Financial Agent</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<link rel="icon" type="image/png" sizes="32x32" href="logo.png">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
+}
+
+body{
+background:#050816;
+color:white;
+overflow-x:hidden;
+}
+
+.hero{
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:80px 30px;
+text-align:center;
+background:
+radial-gradient(circle at top,#1d4ed8 0%,transparent 40%),
+radial-gradient(circle at bottom,#22c55e 0%,transparent 35%),
+#050816;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+}
+
+.badge{
+display:inline-block;
+padding:10px 18px;
+border-radius:999px;
+background:rgba(255,255,255,.08);
+margin-bottom:25px;
+color:#4ade80;
+font-weight:700;
+}
+
+h1{
+font-size:72px;
+font-weight:900;
+line-height:1.05;
+margin-bottom:25px;
+}
+
+h1 span{
+color:#4ade80;
+}
+
+.subtitle{
+font-size:20px;
+max-width:800px;
+margin:auto;
+line-height:1.8;
+color:rgba(255,255,255,.75);
+}
+
+.buttons{
+margin-top:40px;
+display:flex;
+justify-content:center;
+gap:15px;
+flex-wrap:wrap;
+}
+
+.btn{
+padding:16px 28px;
+border-radius:14px;
+text-decoration:none;
+font-weight:700;
+}
+
+.primary{
+background:#4ade80;
+color:#000;
+}
+
+.secondary{
+border:1px solid rgba(255,255,255,.15);
+color:white;
+}
+
+.section{
+padding:100px 30px;
+max-width:1200px;
+margin:auto;
+}
+
+.section h2{
+font-size:52px;
+margin-bottom:20px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:25px;
+margin-top:40px;
+}
+
+.card{
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.08);
+border-radius:24px;
+padding:30px;
+}
+
+.card h3{
+margin-bottom:15px;
+}
+
+.card p{
+color:rgba(255,255,255,.7);
+line-height:1.8;
+}
+
+.pricing{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:30px;
+margin-top:50px;
+}
+
+.price-card{
+background:rgba(255,255,255,.05);
+padding:40px;
+border-radius:24px;
+border:1px solid rgba(255,255,255,.08);
+}
+
+.price{
+font-size:56px;
+font-weight:900;
+margin:20px 0;
+}
+
+footer{
+padding:50px;
+text-align:center;
+color:rgba(255,255,255,.5);
+}
+
+.dashboard-top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:30px;
+}
+
+.dashboard-top h3{
+font-size:18px;
+font-weight:700;
+margin:0;
+}
+
+.live{
+padding:8px 14px;
+border-radius:999px;
+
+background:rgba(74,222,128,0.12);
+color:#4ade80;
+
+font-size:12px;
+font-weight:700;
+}
+
+/* =========================
+HEADER PREMIUM
+========================= */
+
+header{
+position:sticky;
+top:0;
+z-index:1000;
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+padding:20px 40px;
+
+background:rgba(5,8,22,0.75);
+backdrop-filter:blur(18px);
+
+border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+.logo{
+text-decoration:none;
+
+font-size:22px;
+font-weight:800;
+
+letter-spacing:-0.5px;
+
+color:#fff;
+
+transition:0.25s;
+}
+
+.logo:hover{
+opacity:0.9;
+}
+
+.header-btn{
+padding:12px 20px;
+
+border-radius:12px;
+
+background:#4ade80;
+color:#000;
+
+font-weight:700;
+text-decoration:none;
+
+transition:0.25s;
+}
+
+.header-btn:hover{
+transform:translateY(-2px);
+opacity:0.92;
+}
+
+/* mobile */
+
+@media(max-width:768px){
+
+header{
+padding:16px 20px;
+}
+
+.logo{
+font-size:18px;
+}
+
+.header-btn{
+padding:10px 16px;
+font-size:14px;
+}
+
+}
+
+.faq-answer{
+  display:none;
+  margin-top:10px;
+  color:rgba(255,255,255,0.75);
+  line-height:1.6;
+}
+
+.faq-item.active .faq-answer{
+  display:block;
+}
+
+.faq-question{
+  cursor:pointer;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 0;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+.dashboard-top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+padding:20px 24px;
+margin-bottom:30px;
+
+background:rgba(255,255,255,0.05);
+border:1px solid rgba(74,222,128,0.15);
+
+border-radius:20px;
+
+backdrop-filter:blur(12px);
+
+box-shadow:
+0 0 30px rgba(74,222,128,0.08);
+}
+
+.dashboard-top h3{
+font-size:20px;
+font-weight:800;
+color:#ffffff;
+letter-spacing:-0.3px;
+}
+
+.live{
+padding:8px 14px;
+border-radius:999px;
+
+background:rgba(74,222,128,0.12);
+border:1px solid rgba(74,222,128,0.25);
+
+color:#4ade80;
+
+font-size:12px;
+font-weight:700;
+
+box-shadow:
+0 0 15px rgba(74,222,128,0.15);
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:18px;
+}
+
+.stat{
+padding:22px;
+border-radius:18px;
+
+background:rgba(255,255,255,0.05);
+border:1px solid rgba(255,255,255,0.08);
+
+transition:.25s;
+}
+
+.stat:hover{
+transform:translateY(-3px);
+
+border-color:rgba(74,222,128,0.25);
+
+box-shadow:
+0 0 25px rgba(74,222,128,0.08);
+}
+
+.stat h4{
+font-size:14px;
+color:rgba(255,255,255,.65);
+margin-bottom:10px;
+}
+
+.stat p{
+font-size:28px;
+font-weight:800;
+color:#4ade80;
+}
+
+.dashboard-card{
+max-width:900px;
+margin:60px auto;
+
+padding:30px;
+
+background:rgba(255,255,255,0.05);
+border:1px solid rgba(255,255,255,0.08);
+
+border-radius:28px;
+
+backdrop-filter:blur(16px);
+
+box-shadow:
+0 0 40px rgba(74,222,128,0.08);
+}
+
+.security-feed{
+margin-top:24px;
+
+padding:20px;
+
+background:rgba(255,255,255,0.03);
+
+border:1px solid rgba(255,255,255,0.06);
+
+border-radius:18px;
+}
+
+.security-feed div{
+padding:10px 0;
+color:rgba(255,255,255,0.85);
+
+border-bottom:1px solid rgba(255,255,255,0.05);
+}
+
+.security-feed div:last-child{
+border-bottom:none;
+}
+
+/* =========================
+AVIS UTILISATEURS PREMIUM
+========================= */
+
+.review-card{
+background:rgba(255,255,255,0.04);
+border:1px solid rgba(255,255,255,0.08);
+border-radius:22px;
+
+padding:28px;
+margin-bottom:20px;
+
+backdrop-filter:blur(14px);
+
+position:relative;
+overflow:hidden;
+
+transition:.3s ease;
+}
+
+.review-card::before{
+content:"";
+
+position:absolute;
+top:-50%;
+left:-50%;
+
+width:200%;
+height:200%;
+
+background:
+radial-gradient(
+circle,
+rgba(74,222,128,0.08),
+transparent 60%
+);
+
+opacity:0;
+transition:.4s;
+}
+
+.review-card:hover::before{
+opacity:1;
+}
+
+.review-card:hover{
+transform:translateY(-6px);
+
+border-color:rgba(74,222,128,0.25);
+
+box-shadow:
+0 0 30px rgba(74,222,128,0.12);
+}
+
+.review-card p:first-child{
+font-size:17px;
+letter-spacing:2px;
+color:#4ade80;
+margin-bottom:14px;
+}
+
+.review-card p:nth-child(2){
+line-height:1.8;
+color:rgba(255,255,255,.78);
+font-size:15px;
+}
+
+.review-card strong{
+display:inline-block;
+margin-top:16px;
+
+color:#4ade80;
+font-size:14px;
+font-weight:700;
+
+transition:.25s;
+}
+
+.review-card:hover strong{
+color:#ffffff;
+}
+
+/* titre section */
+
+.review-title{
+font-size:52px;
+font-weight:900;
+margin-bottom:40px;
+letter-spacing:-1px;
+}
+
+.review-title span{
+color:#4ade80;
+}
+
+.header-btn{
+display:flex;
+align-items:center;
+justify-content:center;
+
+padding:12px 20px;
+
+border-radius:12px;
+background:#4ade80;
+color:#000;
+
+font-weight:700;
+text-decoration:none;
+
+transition:0.25s;
+}
+
+/* ==========================================
+LANDING PAGE MOBILE ULTRA PREMIUM
+========================================== */
+
+@media screen and (max-width:768px){
+
+/* HERO */
+
+.hero{
+    padding:120px 20px 80px;
+    position:relative;
+    overflow:hidden;
+}
+
+.hero::before{
+    content:"";
+
+    position:absolute;
+    width:300px;
+    height:300px;
+
+    top:-100px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    background:#4ade80;
+    filter:blur(140px);
+
+    opacity:.12;
+}
+
+/* BADGE */
+
+.badge{
+    font-size:13px;
+    padding:12px 18px;
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.08);
+}
+
+/* TITRE */
+
+h1{
+    font-size:42px;
+    line-height:1.05;
+    letter-spacing:-2px;
+}
+
+/* SOUS TITRE */
+
+.subtitle{
+    font-size:16px;
+    line-height:1.9;
+
+    max-width:100%;
+}
+
+/* BOUTONS */
+
+.buttons{
+    gap:12px;
+}
+
+.btn{
+width:100%;
+padding:16px;
+border-radius:18px;
+font-size:15px;
+}
+
+/* bouton header uniquement */
+header .header-btn{
+width:auto;
+padding:8px 14px;
+font-size:13px;
+border-radius:10px;
+}
+
+/* bouton hero (Déverrouiller l'Agent) */
+.hero .header-btn{
+width:100%;
+padding:16px;
+border-radius:14px;
+font-size:15px;
+}
+
+/* CARDS */
+
+.card,
+.review-card,
+.price-card,
+.dashboard-card{
+
+    border-radius:26px;
+
+    backdrop-filter:blur(20px);
+
+    box-shadow:
+    0 10px 40px rgba(0,0,0,.35),
+    0 0 30px rgba(74,222,128,.08);
+
+    transition:.35s;
+}
+
+/* DASHBOARD */
+
+.dashboard-card{
+    margin:30px 15px;
+    padding:24px;
+}
+
+/* STATS */
+
+.stats{
+    grid-template-columns:1fr;
+    gap:15px;
+}
+
+.stat{
+    padding:24px;
+}
+
+.stat p{
+    font-size:34px;
+}
+
+/* TITRES */
+
+.section h2,
+.review-title{
+    font-size:34px;
+    line-height:1.15;
+
+    letter-spacing:-1px;
+}
+
+/* HEADER */
+
+header{
+    padding:14px 18px;
+
+    backdrop-filter:blur(30px);
+
+    background:rgba(5,8,22,.85);
+}
+
+.logo{
+    font-size:16px;
+}
+
+/* REVIEWS */
+
+.review-card{
+    padding:24px;
+}
+
+/* FAQ */
+
+.faq-question{
+    font-size:15px;
+    padding:18px 0;
+}
+
+/* ANIMATION */
+
+.card,
+.review-card,
+.stat{
+
+    animation:floatCard 4s ease-in-out infinite;
+}
+
+@keyframes floatCard{
+
+    0%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-4px);
+    }
+
+    100%{
+        transform:translateY(0);
+    }
+
+}
+
+}
+
+/* =========================
+LOGO PREMIUM
+========================= */
+
+.logo{
+    display:flex;
+    align-items:center;
+
+    text-decoration:none;
+
+    font-size:18px;
+    font-weight:800;
+
+    letter-spacing:-0.8px;
+
+    color:#fff;
+
+    position:relative;
+
+    transition:.3s ease;
+}
+
+.logo strong{
+    background:linear-gradient(
+        90deg,
+        #ffffff,
+        #d1d5db,
+        #4ade80
+    );
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.logo::after{
+    content:"";
+
+    position:absolute;
+
+    bottom:-6px;
+    left:0;
+
+    width:0;
+    height:2px;
+
+    background:#4ade80;
+
+    transition:.35s ease;
+}
+
+.logo:hover::after{
+    width:100%;
+}
+
+.logo:hover{
+    transform:translateY(-2px);
+}
+
+@media screen and (max-width:768px){
+
+.logo{
+    font-size:15px;
+    line-height:1.2;
+}
+
+}
+
+.contact-buttons{
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+.contact-buttons a{
+width:100%;
+max-width:460px;
+
+padding:18px 24px;
+
+border-radius:18px;
+
+text-align:center;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-weight:700;
+
+margin:0 auto;
+
+transition:.3s ease;
+}
+
+.contact-buttons a:hover{
+transform:translateY(-3px);
+}
+
+/* SECTION PREVIEW PREMIUM */
+.preview-interface {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+/* TITRE */
+.preview-interface h2 {
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 25px;
+    color: #fff;
+}
+
+/* IMAGE PREMIUM */
+.preview-interface img {
+    width: 80%;
+    max-width: 600px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* HOVER PREMIUM */
+.preview-interface img:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 30px 70px rgba(0,0,0,0.2);
+}
+
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+
+<header>
+
+  <a href="./index.html" class="logo">
+  <strong>Joshiiro Financial Agent</strong>
+  </a>
+
+  <a href="javascript:void(0)" class="header-btn" onclick="showPayment()">
+    Accéder
+  </a>
+
+</header>
+
+<section class="hero">
+<div class="container">
+<div class="badge">
+IA Business • Marketing • Revenus Digitaux
+</div>
+<h1>
+Votre <span>agent IA business</span><br>
+disponible 24h/24.
+</h1>
+
+<p class="subtitle">
+Joshiiro Financial Agent vous aide à trouver des idées de business,
+créer des produits digitaux, développer votre audience et structurer vos revenus en ligne.
+</p>
+
+<div style="margin-top:40px;"></div>
+
+<div class="buttons">
+<a href="#features" class="btn secondary">Découvrir</a>
+<a href="javascript:void(0)" class="header-btn" onclick="showPayment()">
+  Déverrouiller l'Agent
+</a>
+</div>
+</div>
+</section>
+
+<div class="dashboard-card">
+
+<div class="dashboard-top">
+<h3>Joshiiro Financial Agent</h3>
+<div class="live">IA ACTIVE</div>
+</div>
+
+<div class="stats">
+
+<div class="stat">
+<h4>Idées Business</h4>
+<p>247</p>
+</div>
+
+<div class="stat">
+<h4>Produits Digitaux</h4>
+<p>89</p>
+</div>
+
+<div class="stat">
+<h4>Plans Créés</h4>
+<p>512</p>
+</div>
+
+<div class="stat">
+<h4>Disponibilité</h4>
+<p>24/7</p>
+</div>
+
+</div>
+
+<div class="security-feed">
+<div>✔ Analyse d'opportunité terminée</div>
+<div>✔ Produit digital généré</div>
+<div>✔ Plan financier optimisé</div>
+<div>✔ Stratégie avancée</div>
+</div>
+
+</div>
+
+<section class="preview-interface">
+  <h2>
+    Aperçu de l’interface de<br>
+    Joshiiro Financial Agent
+  </h2>
+
+<img src="aperçu-de-joshiiro-financial-agent.png">
+</section>
+
+<section class="section" id="features">
+<h2>Les capacités de l’IA</h2>
+<div class="grid">
+<div class="card">
+<h3>💡 Idées de business</h3>
+<p>Génération d'idées adaptées à votre budget et vos objectifs.</p>
+</div>
+<div class="card">
+<h3>🎯 Stratégie avancée</h3>
+<p>Techniques pour améliorer tes résultats, augmenter ton audience.</p>
+</div>
+<div class="card">
+<h3>📘 Produits digitaux</h3>
+<p>Création d'ebooks, offres et produits numériques.</p>
+</div>
+<div class="card">
+<h3>📈 Croissance</h3>
+<p>Stratégies de vente et développement d'audience.</p>
+</div>
+<div class="card">
+<h3>🤖 Assistance 24/7</h3>
+<p>Réponses instantanées à vos questions business.</p>
+</div>
+<div class="card">
+<h3>⚡ Productivité</h3>
+<p>Plans d'action structurés et exécutables.</p>
+</div>
+</div>
+</section>
+
+<section class="section">
+
+<h2 class="review-title">
+Avis <span>utilisateurs</span>
+</h2>
+
+<div class="review-card">
+<p>⭐⭐⭐⭐⭐</p>
+<p>– Il y a 3 jours<br>
+“J'avais des dizaines d'idées en tête mais aucune direction claire. Joshiiro Financial Agent m'a proposé un plan complet adapté à mon budget et à mes compétences. J'ai enfin commencé à passer à l'action.”<br>
+Écrit 3 jours après l'achat</p>
+<p><strong>- Enzo R.</strong></p>
+</div>
+
+<div style="margin-top:15px;"></div>
+
+<div class="review-card">
+<p>⭐⭐⭐⭐⭐</p>
+<p>– Il y a 6 jours<br>
+“L'outil m'a aidée à créer un ebook et une stratégie de vente en quelques heures. J'ai gagné un temps énorme par rapport aux recherches que je faisais avant.”<br>
+Écrit 6 jours après l'achat</p>
+<p><strong>- Léa P.</strong></p>
+</div>
+
+<div style="margin-top:15px;"></div>
+
+<div class="review-card">
+<p>⭐⭐⭐⭐⭐</p>
+<p>– Il y a 14 jours<br>
+“J'utilise Joshiiro Financial Agent pour mes stratégies TikTok. Les idées de contenu et les plans proposés sont beaucoup plus précis que ce que j'obtenais avec d'autres outils.”<br>
+Écrit 14 jours après l'achat</p>
+<p><strong>- Emma V.</strong></p>
+</div>
+
+</section>
+
+<!-- 💳 PAYMENT BOX -->
+<div id="paymentBox" class="card" style="display:none; padding:40px;">
+
+<h2>💳 Accès Premium – Joshiiro Financial Agent</h2>
+<p><strong>Prix :</strong> 97€ (paiement unique – accès à vie)</p>
+<ul>
+<li>✔ Agent IA Business & Revenus disponible 24h/24</li>
+<li>✔ Création de plans financiers personnalisés</li>
+<li>✔ Génération d'idées de business rentables</li>
+<li>✔ Création d'ebooks et produits digitaux</li>
+<li>✔ Stratégies TikTok, Instagram et marketing</li>
+<li>✔ Plans d'action détaillés étape par étape</li>
+<li>✔ Assistance premium prioritaire</li>
+</ul>
+
+<div style="margin-top:40px;"></div>
+<h2>Moyen de paiement</h2>
+<div style="margin-top:15px;"></div>
+<ul>
+<li>🏦 Virement bancaire (IBAN)</li>
+</ul>
+<p>
+Votre accès Premium est activé manuellement après validation du paiement.<br><br>
+
+Chaque transaction est vérifiée afin de garantir un accès sécurisé et une activation sans erreur.
+
+</p>
+<div style="margin-top:40px;"></div>
+<h2>🚀 Comment rejoindre Joshiiro Financial Agent</h2>
+<div style="margin-top:40px;"></div>
+
+<div class="contact-buttons">
+
+<a href="https://wa.me/590690111817" target="_blank"
+style="background:transparent; border:1px solid #4ade80; color:#4ade80; text-decoration:none;">
+💬 Assistance Joshiiro
+</a>
+
+<div style="margin-top:15px;"></div>
+
+<a href="mailto:joshiiroprestance@gmail.com" target="_blank"
+style="background:#4ade80; color:#000; text-decoration:none;">
+📨 Recevoir les instructions de paiement
+</a>
+
+</div>
+
+<p style="margin-top:20px; color:rgba(255,255,255,0.75); line-height:1.7;">
+📩 Après le paiement, envoyez votre preuve par email ou WhatsApp afin d'activer immédiatement votre accès Premium.
+</p>
+</div>
+
+</div>
+
+<!-- FAQ -->
+
+<section class="section" id="faq">
+<h2 class="section-title">
+Questions fréquentes
+</h2>
+
+<div class="faq-item">
+<div class="faq-question">
+Que peut faire Joshiiro Financial Agent ?
+<span>▼</span>
+</div>
+
+<div class="faq-answer">
+<p>
+L'agent IA vous aide à trouver des idées de business,
+créer des produits digitaux, développer votre audience,
+structurer vos revenus et construire un plan d'action adapté à vos objectifs.
+</p>
+</div>
+
+</div>
+<div class="faq-item">
+<div class="faq-question">
+L'accès est-il limité dans le temps ?
+<span>▼</span>
+</div>
+
+<div class="faq-answer">
+<p>
+Non. L'offre Premium donne accès à vie à votre agent IA après validation du paiement.
+</p>
+</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">
+Puis-je créer des ebooks et produits numériques ?
+<span>▼</span>
+</div>
+
+<div class="faq-answer">
+<p>
+Oui. L'agent peut vous aider à concevoir des ebooks,
+guides, formations, offres digitales et stratégies de vente.
+</p>
+</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">
+Est-ce adapté aux débutants ?
+<span>▼</span>
+</div>
+
+<div class="faq-answer">
+<p>
+Oui. Les recommandations sont fournies étape par étape,
+même si vous débutez dans le business en ligne.
+</p>
+</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">
+Puis-je utiliser l'agent depuis mon téléphone ?
+<span>▼</span>
+</div>
+
+<div class="faq-answer">
+<p>
+Oui. Joshiiro Financial Agent est accessible depuis smartphone, tablette ou ordinateur.
+</p>
+</div>
+</div>
+
+<!-- FOOTER -->
+
+<footer>
+
+©️ <span id="year"></span> Joshiiro Financial Agent — IA Business & Revenus Digitaux.
+
+</footer>
+
+<!-- JS -->
+
+<script>
+
+document.getElementById("year").textContent =
+new Date().getFullYear();
+
+// =======================================
+// 🟢 JS complet pour boutons
+// =======================================
+
+// ==========================
+// ✅ Fonctions boutons 
+// ==========================
+
+function showPayment(){
+  const paymentBox = document.getElementById("paymentBox");
+
+  if(paymentBox){
+    paymentBox.style.display = "block";
+    paymentBox.scrollIntoView({ behavior: "smooth" });
+  }
+}
+
+/* FAQ */
+
+document.querySelectorAll(".faq-item").forEach(item=>{
+
+item.addEventListener("click",()=>{
+
+document.querySelectorAll(".faq-item").forEach(el=>{
+
+if(el!==item){
+el.classList.remove("active");
+}
+
+});
+
+item.classList.toggle("active");
+
+});
+
+});
+
+</script>
+
+</body>
+</html>
